@@ -85,13 +85,13 @@ def send_bulk_emails_route():
 
         # Validate 'pdf_path'
         pdf_path = data.get('pdf_path')
-        if not pdf_path or not os.path.exists(pdf_path):
-            return jsonify({"error": f"Invalid or missing 'pdf_path': {pdf_path}"}), 400
+        # if not pdf_path or not os.path.exists(pdf_path):
+        #     return jsonify({"error": f"Invalid or missing 'pdf_path': {pdf_path}"}), 400
 
         # Optional image path
         image_path = data.get('image_path')
-        if image_path and not os.path.exists(image_path):
-            return jsonify({"error": f"Invalid or missing 'image_path': {image_path}"}), 400
+        # if image_path and not os.path.exists(image_path):
+        #     return jsonify({"error": f"Invalid or missing 'image_path': {image_path}"}), 400
 
         # Process each recipient
         for recipient in recipient_list:
