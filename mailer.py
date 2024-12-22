@@ -65,8 +65,7 @@ def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
 
     <h3>For further queries, contact us at:</h3>
     <p><strong>Email ID:</strong> <a href="mailto:connect@genaisummit.in">connect@genaisummit.in</a></p>
-    <p><strong>Contact Number:</strong> +91 62303 56822</p>
-    <b>PDF:</b><br>
+    <p><strong>Contact Number:</strong> +91 62303 56822</p></b><br>
         <embed src="cid:embedded_pdf" width="600" height="400" type="application/pdf"><br><br>
          <img src="cid:embedded_image" alt="" width="300"><br><br>
   </body>
