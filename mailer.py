@@ -65,7 +65,7 @@ def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
 
     print(f"Email sent to {to_name} at {to_email}")
 
-@app.route('/send-bulk-emails', methods=['POST'])
+@app.route('/sendemails', methods=['POST'])
 def send_bulk_emails_route():
     try:
         # Parse JSON data
