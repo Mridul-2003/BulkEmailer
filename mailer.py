@@ -68,8 +68,7 @@ def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
     <p><strong>Contact Number:</strong> +91 62303 56822</p>
     <b>PDF:</b><br>
         <embed src="cid:embedded_pdf" width="600" height="400" type="application/pdf"><br><br>
-         <img src="cid:embedded_image" alt="Embedded Image" width="300"><br><br>
-        Visit our <a href="https://www.yourwebsite.com">website</a>.<br><br>
+         <img src="cid:embedded_image" alt="" width="300"><br><br>
   </body>
 </html>
 
