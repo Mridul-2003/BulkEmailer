@@ -80,7 +80,7 @@ def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
 
     )
     # msg.body=text_body
-     msg.html=html_body
+    msg.html=html_body
 
     if pdf_path:
         with app.open_resource(pdf_path) as pdf:
