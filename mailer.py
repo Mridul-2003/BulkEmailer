@@ -31,6 +31,7 @@ def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
       </body>
     </html>
     """
+    text_body = text_body
     msg = Message(
         subject="Personalized Email with Embedded Attachments",
         sender='mridulmittal2003@gmail.com',
