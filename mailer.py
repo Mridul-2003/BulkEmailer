@@ -1,5 +1,7 @@
 from flask import Flask,request,jsonify
 from flask_mail import Mail, Message
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import os
 import time 
 
@@ -15,31 +17,40 @@ app.config['MAIL_USE_SSL'] = False
 mail = Mail(app)
 
 def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
+    msg = MIMEMultipart('mixed')
+    
+    # Plain text part
+    text_part = MIMEText(text_body, 'plain')
+    msg.attach(text_part)
+    
+    # HTML part
     html_body = f"""\
     <html>
       <body>
         <p>Hi {to_name},<br><br>
-        <br>
-           <b>Embedded PDF:</b><br>
-           <embed src="cid:embedded_pdf" width="600" height="400" type="application/pdf"><br><br>
-           <b>Embedded Image:</b><br>
-           <img src="cid:embedded_image" alt="Embedded Image" width="300"><br><br>
-           Visit our <a href="https://www.yourwebsite.com">website</a>.<br><br>
-           Best regards,<br>
-           Your Name
+        <b>Embedded PDF:</b><br>
+        <embed src="cid:embedded_pdf" width="600" height="400" type="application/pdf"><br><br>
+        <b>Embedded Image:</b><br>
+        <img src="cid:embedded_image" alt="Embedded Image" width="300"><br><br>
+        Visit our <a href="https://www.yourwebsite.com">website</a>.<br><br>
+        Best regards,<br>
+        Your Name
         </p>
       </body>
     </html>
     """
-    text_body = text_body
+    
+    html_part = MIMEText(html_body, 'html')
+    msg.attach(html_part)
+
     msg = Message(
         subject="Personalized Email with Embedded Attachments",
         sender='mridulmittal2003@gmail.com',
         recipients=[to_email]
 
     )
-    msg.body=text_body
-    msg.html=html_body
+    # msg.body=text_body
+    # msg.html=html_body
 
     if pdf_path:
         with app.open_resource(pdf_path) as pdf:
