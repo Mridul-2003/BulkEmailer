@@ -72,9 +72,6 @@ def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
 </html>
 
     """
-    
-    html_part = MIMEText(html_body, 'html')
-    msg.attach(html_part)
 
     msg = Message(
         subject="Personalized Email with Embedded Attachments",
