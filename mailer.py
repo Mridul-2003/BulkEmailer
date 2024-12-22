@@ -77,7 +77,7 @@ def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
 
     msg = Message(
         subject="Get ready to meet the industry's Best at the GenAI Summit - 11th January 2025,New Delhi",
-        sender='Anant@genaisummit.in',
+        sender='Gen AI" <Anant@genaisummit.in>',
         recipients=[to_email]
 
     )
