@@ -119,7 +119,8 @@ def send_bulk_emails_route():
         return jsonify({"error": "An unexpected error occurred."}), 500
 
 # Example Usage
-if__name__ == "__main__":
+if __name__ == "__main__":
+    
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8000)), debug=False)
 
 
