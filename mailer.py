@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 app.config['MAIL_SERVER'] = 'smtp.hostinger.com' 
 app.config['MAIL_PORT'] = 587                
-app.config['MAIL_USERNAME'] = 'Anant@genaisummit.in'  
-app.config['MAIL_PASSWORD'] = 'fxgi hoqz umlg ikej' 
+app.config['MAIL_USERNAME'] = 'anant@genaisummit.in'  
+app.config['MAIL_PASSWORD'] = 'Anant2003##' 
 # app.config['MAIL_USERNAME'] = 'gauranshi@genaisummit.in'  
 # app.config['MAIL_PASSWORD'] = 'zfxu epjg vqhp nnxt'
 app.config['MAIL_USE_TLS'] = True
