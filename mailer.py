@@ -5,7 +5,7 @@ import time
 
 app = Flask(__name__)
 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com' 
+app.config['MAIL_SERVER'] = 'smtp.hostinger.com' 
 app.config['MAIL_PORT'] = 587                
 app.config['MAIL_USERNAME'] = 'Anant@genaisummit.in'  
 app.config['MAIL_PASSWORD'] = 'fxgi hoqz umlg ikej' 
