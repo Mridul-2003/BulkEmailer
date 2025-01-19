@@ -5,18 +5,34 @@ import time
 
 app = Flask(__name__)
 
-app.config['MAIL_SERVER'] = 'smtp.hostinger.com' 
+app.config['MAIL_SERVER'] = 'smtp.gmail.com' 
 app.config['MAIL_PORT'] = 587                
-app.config['MAIL_USERNAME'] = 'anant@genaisummit.in'  
-app.config['MAIL_PASSWORD'] = 'Anant2003##' 
-# app.config['MAIL_USERNAME'] = 'gauranshi@genaisummit.in'  
-# app.config['MAIL_PASSWORD'] = 'zfxu epjg vqhp nnxt'
+app.config['MAIL_USERNAME'] = ''  
+app.config['MAIL_PASSWORD'] = '' 
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 
 mail = Mail(app)
 
 def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
+    html_body = f"""\
+   <html>
+  <body>
+    <p>Dear {to_name},</p>
+
+    <p>It was an absolute honor to have you with us at the Gen AI Summit 2025. Your presence and active participation added immense value to the discussions and collaborations throughout the event. We are truly grateful for your contribution to making the summit a remarkable success.</p>
+
+    <p>We are delighted to share the moments we captured during the summit. Please find the photo gallery here:</p>
+    <p><a href="https://drive.google.com/drive/folders/1o3wKbJIsDJbTS1mttQrG2yzUiQN_gSFo" target="_blank">https://drive.google.com/drive/folders/1o3wKbJIsDJbTS1mttQrG2yzUiQN_gSFo</a></p>
+
+    <p>Thank you once again for being a part of this incredible journey to shape the future of Generative AI. We look forward to staying connected and welcoming you to future editions of the summit.</p>
+
+    <p>Warm regards,<br>Team<br>Gen AI Summit 2025</p>
+    <p>Connect : +91 6230356822</p>
+    <p>Website : <a href="www.genaisummit.in" target="_blank">www.genaisummit.in</a></p>
+  </body>
+</html>
+    """
     # HTML part
 #     html_body = f"""\
 #    <html>
@@ -74,43 +90,45 @@ def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
 # </html>
 
 #     """
-    html_body = f"""\
-   <html>
-  <body>
-    <p>Respected Sir/Ma'am,</p>
+#     html_body = f"""\
+#    <html>
+#   <body>
+#     <p>Respected Sir/Ma'am,</p>
 
-    <p>We are thrilled to announce the Gen AI Summit 2025, a premier event dedicated to exploring the transformative potential of Generative AI. Scheduled for January 11, 2025, at the Eros Hotel, New Delhi, this one-day summit will feature a stellar lineup of 25+ expert speakers and an audience of visionaries, innovators, and industry leaders.</p>
+#     <p>We are thrilled to announce the Gen AI Summit 2025, a premier event dedicated to exploring the transformative potential of Generative AI. Scheduled for January 11, 2025, at the Eros Hotel, New Delhi, this one-day summit will feature a stellar lineup of 25+ expert speakers and an audience of visionaries, innovators, and industry leaders.</p>
 
-    <p>This prestigious event offers a unique opportunity for collaboration, and we are reaching out to invite your esteemed organization to partner with us as a sponsor. By supporting the Gen AI Summit 2025, you can:</p>
+#     <p>This prestigious event offers a unique opportunity for collaboration, and we are reaching out to invite your esteemed organization to partner with us as a sponsor. By supporting the Gen AI Summit 2025, you can:</p>
 
-    <ul>
-      <li>Showcase your brand as a leader in the rapidly evolving AI landscape.</li>
-      <li>Connect with industry experts, innovators, and decision-makers.</li>
-        <li>Gain unparalleled visibility and networking opportunities.</li>
-    </ul>
+#     <ul>
+#       <li>Showcase your brand as a leader in the rapidly evolving AI landscape.</li>
+#       <li>Connect with industry experts, innovators, and decision-makers.</li>
+#         <li>Gain unparalleled visibility and networking opportunities.</li>
+#     </ul>
 
-        <p>We also request you to kindly fill out a short Google Form with your contact details to express your interest in collaborating with us for this transformative event. This will help us tailor a partnership package that aligns with your organizational goals and values.</p>
+#         <p>We also request you to kindly fill out a short Google Form with your contact details to express your interest in collaborating with us for this transformative event. This will help us tailor a partnership package that aligns with your organizational goals and values.</p>
 
-        <p>👉 <a href="https://forms.gle/ccEpagyt2kzkGaK38" target="_blank">Google Form Link</a></p>
+#         <p>👉 <a href="https://forms.gle/ccEpagyt2kzkGaK38" target="_blank">Google Form Link</a></p>
 
-        <p>Your support will contribute significantly to the success of this landmark event, and we believe this collaboration will be mutually rewarding.</p>
+#         <p>Your support will contribute significantly to the success of this landmark event, and we believe this collaboration will be mutually rewarding.</p>
 
-        <p>For further details about sponsorship packages or any other inquiries, please feel free to contact me directly at <a href="mailto:Gauranshi@genaisummit.in">Gauranshi@genaisummit.in</a> or +91 6230356822.</p>
+#         <p>For further details about sponsorship packages or any other inquiries, please feel free to contact me directly at <a href="mailto:Gauranshi@genaisummit.in">Gauranshi@genaisummit.in</a> or +91 6230356822.</p>
 
-        <p>We look forward to the opportunity of partnering with you to redefine the future of Generative AI.</p>
+#         <p>We look forward to the opportunity of partnering with you to redefine the future of Generative AI.</p>
 
-    <p>Warm regards,<br>Gauranshi Gupta<br>Gen AI Summit 2025</p>
-    <p>📞 Helpline: +91 6230356822</p>
-    <p>🌐 Website: <a href="www.genaisummit.in" target="_blank">www.genaisummit.in</a></p>
-    <p>📱 Instagram: <a href="https://www.instagram.com/genaisummit01/" target="_blank">@genaisummit01</a></p>
-    <p>💼 LinkedIn: <a href="https://www.linkedin.com/company/genaisummit2025" target="_blank">Gen AI Summit 2025</a></p>
+#     <p>Warm regards,<br>Gauranshi Gupta<br>Gen AI Summit 2025</p>
+#     <p>📞 Helpline: +91 6230356822</p>
+#     <p>🌐 Website: <a href="www.genaisummit.in" target="_blank">www.genaisummit.in</a></p>
+#     <p>📱 Instagram: <a href="https://www.instagram.com/genaisummit01/" target="_blank">@genaisummit01</a></p>
+#     <p>💼 LinkedIn: <a href="https://www.linkedin.com/company/genaisummit2025" target="_blank">Gen AI Summit 2025</a></p>
     
-    <br>
-        <embed src="cid:embedded_pdf" width="600" height="400" type="application/pdf"><br><br>
-         <img src="cid:embedded_image" alt="" width="300"><br><br>
-  </body>
-</html>
-    """
+#     <br>
+#         <embed src="cid:embedded_pdf" width="600" height="400" type="application/pdf"><br><br>
+#          <img src="cid:embedded_image" alt="" width="300"><br><br>
+#   </body>
+# </html>
+#     """
+
+
 
     # msg = Message(
     #     subject="Get ready to meet the industry's Best at the GenAI Summit - 11th January 2025,New Delhi",
@@ -127,24 +145,24 @@ def send_email(to_email,to_name,text_body,pdf_path=None,image_path=None):
     # msg.body=text_body
     msg.html=html_body
 
-    if pdf_path:
-        with app.open_resource(pdf_path) as pdf:
-            msg.attach(
-                os.path.basename(pdf_path),
-                'application/pdf',
-                pdf.read(),
-                headers={'Content-ID': '<embedded_pdf>'}  # Dictionary format
-            )
+    # if pdf_path:
+    #     with app.open_resource(pdf_path) as pdf:
+    #         msg.attach(
+    #             os.path.basename(pdf_path),
+    #             'application/pdf',
+    #             pdf.read(),
+    #             headers={'Content-ID': '<embedded_pdf>'}  # Dictionary format
+    #         )
 
-    # Attach Image with correct headers format
-    if image_path:
-        with app.open_resource(image_path) as image:
-            msg.attach(
-                os.path.basename(image_path),
-                'image/jpeg',
-                image.read(),
-                headers={'Content-ID': '<embedded_image>'}  # Dictionary format
-            )
+    # # Attach Image with correct headers format
+    # if image_path:
+    #     with app.open_resource(image_path) as image:
+    #         msg.attach(
+    #             os.path.basename(image_path),
+    #             'image/jpeg',
+    #             image.read(),
+    #             headers={'Content-ID': '<embedded_image>'}  # Dictionary format
+    #         )
 
     # Send email
     with app.app_context():
