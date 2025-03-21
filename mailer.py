@@ -233,18 +233,15 @@ import os
 
 app = Flask(__name__)
 
-# Configs for mail server
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-
-mail = Mail(app)
 
 def send_email(sender_email, sender_password, to_email, to_name, subject, text_body, pdf_path=None, image_path=None):
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USE_SSL'] = False
     app.config['MAIL_USERNAME'] = sender_email
     app.config['MAIL_PASSWORD'] = sender_password
-
+    mail = Mail(app)
     msg = Message(
         subject=subject,
         sender=sender_email,
