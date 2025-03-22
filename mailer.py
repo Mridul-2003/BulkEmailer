@@ -305,14 +305,14 @@ def send_bulk_emails_route():
         sender_password = request.form.get('sender_password')
         subject = request.form.get('subject')
         text_body_template = request.form.get('text_body')
-        csv_folder_path = request.form.get('csv_folder_path')
+        csv_file = request.files.get('csv_file')
         email_column_name = request.form.get('email_column_name')
         name_column_name = request.form.get('name_column_name')
 
         pdf_file = request.files.get('pdf_file')
         image_file = request.files.get('image_file')
 
-        if not all([sender_email, sender_password, subject, text_body_template, csv_folder_path, email_column_name, name_column_name]):
+        if not all([sender_email, sender_password, subject, text_body_template, csv_file, email_column_name, name_column_name]):
             return jsonify({"error": "Missing required parameters"}), 400
 
         recipient_list = extract_emails_in_batches(csv_folder_path, email_column_name, name_column_name)
