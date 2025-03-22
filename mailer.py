@@ -236,31 +236,26 @@ import json
 app = Flask(__name__)
 
 
-def extract_emails_in_batches(folder_path, email_column_name, name_column_name):
+def extract_emails_from_csv(file, email_column_name, name_column_name):
     email_entries = []
+    try:
+        if file.filename.endswith('.csv'):
+            df = pd.read_csv(file)
+        else:  # Handle .xls and .xlsx
+            df = pd.read_excel(file)
 
-    for file_name in os.listdir(folder_path):
-        if file_name.endswith(('.csv', '.xls', '.xlsx')):
-            file_path = os.path.join(folder_path, file_name)
-            try:
-                if file_name.endswith('.csv'):
-                    df = pd.read_csv(file_path)
-                else:  # Handle .xls and .xlsx
-                    df = pd.read_excel(file_path)
-
-                if email_column_name in df.columns and name_column_name in df.columns:
-                    for index, row in df.loc[:, [email_column_name, name_column_name]].dropna().iterrows():
-                        email = row[email_column_name]
-                        name = row[name_column_name]
-                        if email not in ["No email", "vanshikaaggarwal@igdtuw.ac.in", "shivani.chopra@hp.com"]:
-                            email_entries.append({"email": email, "name": name})
-                else:
-                    print(f"Column '{email_column_name}' or '{name_column_name}' not found in file {file_name}")
-            except Exception as e:
-                print(f"Error processing file {file_name}: {e}")
+        if email_column_name in df.columns and name_column_name in df.columns:
+            for index, row in df.loc[:, [email_column_name, name_column_name]].dropna().iterrows():
+                email = row[email_column_name]
+                name = row[name_column_name]
+                if email not in ["No email", "vanshikaaggarwal@igdtuw.ac.in", "shivani.chopra@hp.com"]:
+                    email_entries.append({"email": email, "name": name})
+        else:
+            print(f"Column '{email_column_name}' or '{name_column_name}' not found in file {file.filename}")
+    except Exception as e:
+        print(f"Error processing file {file.filename}: {e}")
 
     return email_entries
-
 def send_email(sender_email, sender_password, to_email, to_name, subject, text_body, pdf_file=None, image_file=None):
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
@@ -315,7 +310,7 @@ def send_bulk_emails_route():
         if not all([sender_email, sender_password, subject, text_body_template, csv_file, email_column_name, name_column_name]):
             return jsonify({"error": "Missing required parameters"}), 400
 
-        recipient_list = extract_emails_in_batches(csv_file, email_column_name, name_column_name)
+        recipient_list = extract_emails_from_csv(csv_file, email_column_name, name_column_name)
 
         for recipient in recipient_list:
             to_email = recipient['email']
