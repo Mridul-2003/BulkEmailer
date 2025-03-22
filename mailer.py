@@ -315,7 +315,7 @@ def send_bulk_emails_route():
         if not all([sender_email, sender_password, subject, text_body_template, csv_file, email_column_name, name_column_name]):
             return jsonify({"error": "Missing required parameters"}), 400
 
-        recipient_list = extract_emails_in_batches(csv_folder_path, email_column_name, name_column_name)
+        recipient_list = extract_emails_in_batches(csv_file, email_column_name, name_column_name)
 
         for recipient in recipient_list:
             to_email = recipient['email']
